@@ -1,3 +1,6 @@
+select * from data_akun;
+drop table data_akun
+
 create table akun(
 	id_user smallserial primary key,
 	first_name varchar(20) not null,
@@ -27,26 +30,27 @@ references akun (id_user);
 
 
 create table data_akun(
-	id_data smallint primary key,
-	category_id smallserial not null,
-	id_user smallint not null,
-	username varchar(50) not null,
-	email varchar (50) not null,
-	passwd varchar(20) not null,
-	telpon varchar(20) not null,
-	nama_category varchar(20) not null
+	Id_akun smallint primary key,
+	Email varchar (50) not null,
+	Contact varchar(20) not null,
+	Username varchar(50) not null,
+	Password varchar(20) not null,
+	Category varchar(20) not null,
+	Deskripsi text
 );
-drop table category
+drop table data_akun
+insert into data_akun(Id_akun,email,Contact,username,Password,Category,Deskripsi) values
+(213,'raden@gmail.com','0865478910','raden','raden123','Elerning','ruangguru'),
+(212,'sayid@gmail.com','0812567234','sayyid','sayid123','sosmed', 'Facebook'),
+(211,'rohmatfadhil12@gmail.com','08512345678','fadil','fadhil123','Technical','github')
+
 alter table data_akun
 add constraint category_id_fk
 foreign key (category_id)
 references category (category_id);
-select * from category
 
-insert into data_akun(id_data,category_id,id_user,username,email,passwd,telpon,category_id,nama_category) values
-(211,100,'github','rohmatfadhil12@gmail.com','fadhil123','08512345678',3,'Technical'),
-(211,101,'facebook','fadhil12@gmail.com','fadhil123',0812567234,1,'sosmed'),
-(213,102,'ruang guru','sayyid12@gmail.com','sayyid123',0865478910,2,'Elerning')
+
+
 create table category(
 	category_id smallserial primary key,
 	nama_category varchar(50) not null,
@@ -59,7 +63,3 @@ insert into category(nama_category,deskripsi)values
 ('Technical','github, freecodecamp, myskill, skillshare, etc'),
 ('mail','emails, mailings, ie. gmail, yahoo, onmail, etc'),
 ('others','')
-
-
-
-
