@@ -1,0 +1,21 @@
+        private void button2_Click(object sender, EventArgs e)
+        {
+            NextQuery nq = new NextQuery("* from pembeli;");
+            Database db = new SQLDBHelper(nq.select()) ;
+            DataTable dt = new DataTable();
+            db.ExecReader(dataGridView1, dt);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int id_pembeli = Convert.ToInt32(textBox4.Text);
+            NextQuery nq = new NextQuery($"from pembeli where id_pembeli = {id_pembeli};");
+            Database db = new SQLDBHelper(nq.delete());
+            db.ExecQuery();
+            button2_Click(sender, e);
+            textBox4.Text = "";
+        }
+        private void Form1_Load(object sender, EventArgs e) { }
+        private void textBox2_TextChanged(object sender, EventArgs e) { label2.Text = ""; }
+        private void textBox3_TextChanged(object sender, EventArgs e) { label3.Text = ""; }
+        private void textBox4_TextChanged(object sender, EventArgs e) { }
+    }
